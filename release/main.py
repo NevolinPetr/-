@@ -2,12 +2,14 @@ import sqlite3
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QTableWidgetItem
+from addEditCoffeeForm import Ui_Dialog
+from main_ui import Ui_MainWindow
 
 
-class Add(QDialog):
+class Add(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         super(Add, self).__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.setWindowTitle('Добавить сорт')
         self.pushButton.clicked.connect(self.close)
         self.con = sqlite3.connect('coffee.sqlite')
@@ -38,10 +40,10 @@ class Add(QDialog):
             self.label_5.show()
 
 
-class Update(QDialog):
+class Update(QDialog, Ui_Dialog):
     def __init__(self, parent=None, coffee=None):
         super(Update, self).__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.coffee = coffee
         self.setWindowTitle('Редактировать сорт')
         self.pushButton.clicked.connect(self.close)
@@ -81,10 +83,10 @@ class Update(QDialog):
             self.label_5.show()
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.setWindowTitle('Кофе')
         self.con = sqlite3.connect('coffee.sqlite')
         self.pushButton.clicked.connect(self.add)
