@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QTableWidgetItem
-from addEditCoffeeForm import
+from addEditCoffeeForm import Ui_Dialog
 from main_ui import Ui_MainWindow
 
 
